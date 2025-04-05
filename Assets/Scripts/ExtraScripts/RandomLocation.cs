@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +6,27 @@ public class LocationTeleporter : MonoBehaviour
     public List<Transform> teleportLocations; // List of locations to teleport to
     private int currentLocationIndex = 0; // Track the current index of the teleport location
 
+    public Transform fireObject; 
+    public Transform vendor; 
+    public Transform customer; 
+    public float teleportRadius = 5f; 
+
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the AI collides with the end object
+       
         if (other.CompareTag("AiPlayer"))
         {
             Debug.Log("AI touched the End Object.");
-            Teleport();
+
+            // Check if both the vendor and customer are within range of the fire
+            if (IsWithinRadius(vendor, fireObject, teleportRadius) && IsWithinRadius(customer, fireObject, teleportRadius))
+            {
+                Teleport();
+            }
+            else
+            {
+                Debug.Log("Vendor or Customer is not within the teleportation radius of the fire.");
+            }
         }
         else
         {
@@ -21,26 +34,26 @@ public class LocationTeleporter : MonoBehaviour
         }
     }
 
+    private bool IsWithinRadius(Transform obj, Transform target, float radius)
+    {
+        return Vector3.Distance(obj.position, target.position) <= radius;
+    }
+
     private void Teleport()
     {
-        
         if (teleportLocations != null && teleportLocations.Count > 0)
         {
-            // Teleport the AI to the current location in the list
+            // Get a random index to teleport to a random location
+            currentLocationIndex = Random.Range(0, teleportLocations.Count);
             Transform teleportLocation = teleportLocations[currentLocationIndex];
+
+            // Teleport the AI to the selected location
             transform.position = teleportLocation.position;
-            transform.rotation = teleportLocation.rotation; 
+            transform.rotation = teleportLocation.rotation;
             Debug.Log("AI Teleported to: " + teleportLocation.position);
 
-            // Increment the index to the next location
-            currentLocationIndex++;
-
-            //Checks if theres anymore to go to 
-            if (currentLocationIndex >= teleportLocations.Count)
-            {
-                Debug.Log("No more teleport locations. AI has finished teleporting.");
-                currentLocationIndex = 0; 
-            }
+            // Optionally: log the index of the new location
+            Debug.Log("Current teleport location index: " + currentLocationIndex);
         }
         else
         {

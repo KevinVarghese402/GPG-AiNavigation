@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a1cfc1db682109442beeca5f1555bb88
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - StreetVendor: {instanceID: 0}
+  - p_NeighbourTracker: {instanceID: 0}
+  - p_MoveFoward: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
