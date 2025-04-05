@@ -9,7 +9,9 @@ public class RandomLocation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the AI collides with the end object
+      
+        Debug.Log($"Collision detected with: {other.name} (Tag: {other.tag})");
+
         if (other.CompareTag("AiPlayer"))
         {
             Debug.Log("AI touched the End Object.");
@@ -26,20 +28,29 @@ public class RandomLocation : MonoBehaviour
         
         if (teleportLocations != null && teleportLocations.Count > 0)
         {
-            // Teleport the AI to the current location in the list
+            Debug.Log("Teleporting AI...");
+
+            
             Transform teleportLocation = teleportLocations[currentLocationIndex];
+            Debug.Log($"Teleporting to location index: {currentLocationIndex} at position: {teleportLocation.position}");
+
+            
             transform.position = teleportLocation.position;
-            transform.rotation = teleportLocation.rotation; 
+            transform.rotation = teleportLocation.rotation;
             Debug.Log("AI Teleported to: " + teleportLocation.position);
 
-            // Increment the index to the next location
+          
             currentLocationIndex++;
 
-            //Checks if theres anymore to go to 
+            
             if (currentLocationIndex >= teleportLocations.Count)
             {
                 Debug.Log("No more teleport locations. AI has finished teleporting.");
-                currentLocationIndex = 0; 
+                currentLocationIndex = 0; // Reset to the first location
+            }
+            else
+            {
+                Debug.Log($"Next teleport location index: {currentLocationIndex}");
             }
         }
         else
