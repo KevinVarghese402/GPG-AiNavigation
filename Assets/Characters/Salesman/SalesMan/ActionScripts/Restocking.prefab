@@ -47,3 +47,9 @@ MonoBehaviour:
   StreetVendor: {fileID: 0}
   p_NeighbourTracker: {fileID: 0}
   p_MoveFoward: {fileID: 0}
+  restockRange: 10
+  p_Avoiding: {fileID: 0}
+  p_TurnTowards: {fileID: 0}
+  p_NavigatingScript: {fileID: 0}
+  p_PathFollow: {fileID: 0}
+  vendor: {fileID: 0}

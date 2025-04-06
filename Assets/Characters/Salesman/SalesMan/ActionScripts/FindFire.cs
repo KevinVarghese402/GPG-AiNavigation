@@ -25,9 +25,11 @@ public class FindFire : AntAIState
         p_MoveFoward = StreetVendor.GetComponent<MoveFoward>();
         p_Avoiding = StreetVendor.GetComponent<Avoid>();
         p_Cohesion = StreetVendor.GetComponent<Cohesion>();
+        p_NeighbourTracker = StreetVendor.GetComponent<NeighbourTracker>();
 
-    }
-    public override void Enter()
+
+}
+public override void Enter()
     {
         base.Enter();
         Debug.Log("AI is now FindingTheFire");

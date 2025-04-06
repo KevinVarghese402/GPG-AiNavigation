@@ -11,39 +11,37 @@ public class Sell : AntAIState
     public NavigationScript p_NavigatingScript;
     public NeighbourTracker p_NeighbourTracker;
     public Customer_TestModel p_customerModel;
+
+    public float timeToSell = 1f;
+    private float sellTimer;
         
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
         StreetVendor = aGameObject;
-        p_MoveForwad = StreetVendor.GetComponent<MoveFoward>();
         p_NeighbourTracker = StreetVendor.GetComponent<NeighbourTracker>();
         p_StreetVendorModel = StreetVendor.GetComponent<StreetVendor_Model>();
+
 
     }
     public override void Enter()
     {
         base.Enter();
-        p_MoveForwad.enabled = true;
-        p_NeighbourTracker.enabled = true;
-
-        p_StreetVendorModel.hasStock = false;
-   
+        sellTimer = Time.time;
 
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale) //update while in the state // Then needing a Finish
     {
         base.Execute(aDeltaTime, aTimeScale);
+        if(Time.time - sellTimer >= timeToSell)
+        {
+            p_StreetVendorModel.hasStock = false;
+            //p_StreetVendorModel.hasMoney = true;
 
+            Finish();
+        }
 
     }
 
-    public override void Exit()
-    {
-        p_MoveForwad.enabled = false;
-        p_NeighbourTracker.enabled = false;
-        p_StreetVendorModel.hasStock = false;
-        base.Exit();
-    }
 }

@@ -14,7 +14,8 @@ public class PathFollow : MonoBehaviour
 
     //                  \\
     private Rigidbody rb;
-    public float movementSpeed; 
+    public float movementSpeed;
+    public TurnTowards turntowards;
     
 
 
@@ -22,6 +23,7 @@ public class PathFollow : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        turntowards = GetComponent<TurnTowards>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class PathFollow : MonoBehaviour
 
         if (pathPoints.Length > 0)
         {
+            /*
             if (Vector3.Distance(transform.position, pathPoints[pathPoints.Length - 1]) > 1)
             {
                 if (Vector3.Distance(transform.position, pathPoints[pathindex]) > 1)
@@ -43,13 +46,19 @@ public class PathFollow : MonoBehaviour
                     pathindex++;
                 }
             }
-
             else
             {
                 pathFinished?.Invoke();
             }
+            */
+            if (pathPoints.Length > 1)
+            {
+                turntowards.SetTarget(pathPoints[1]);
 
-            for (int i = 0; i < pathPoints.Length - 1; i++)
+            }
+
+
+                for (int i = 0; i < pathPoints.Length - 1; i++)
             {
                 Debug.DrawLine(pathPoints[i], pathPoints[i + 1], Color.green);
             }

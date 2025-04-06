@@ -9,7 +9,7 @@ public class Restocking : AntAIState
     public GameObject StreetVendor;
     public NeighbourTracker p_NeighbourTracker;
     public MoveFoward p_MoveFoward;
-    public float restockRange = 1f;
+    public float restockRange = 10f;
 
     //directional Scripts
     public Avoid p_Avoiding;
@@ -47,15 +47,20 @@ public class Restocking : AntAIState
 
        p_NavigatingScript.target = vendor.restockLocation;
 
+
+
+
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
 
-        if(Vector3.Distance(transform.position, vendor.restockLocation.position) <= restockRange)
+
+        if (Vector3.Distance(StreetVendor.transform.position, vendor.restockLocation.position) <= restockRange)
         {
             vendor.hasStock = true;
+            Debug.Log("AI has restocked");
             Finish();
         }
     }
@@ -64,7 +69,6 @@ public class Restocking : AntAIState
     {
         
         base.Exit();
-
         p_MoveFoward.enabled = false;
         p_Avoiding.enabled = false;
         p_TurnTowards.enabled = false;

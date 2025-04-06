@@ -6,12 +6,12 @@ public class NeighbourTracker : MonoBehaviour
 {
     public List<Transform> neighbours = new List<Transform>();
     public float checkLOSInterval = 1.0f; // How often to check Line of Sight (in seconds)
-    public float detectionRadius;
+    //public float detectionRadius;
 
     private void Start()
     {
-        StartCoroutine(CheckLineOfSightRoutine());
-        GetComponent<SphereCollider>().radius = detectionRadius;
+        //StartCoroutine(CheckLineOfSightRoutine());
+        
     }
 
     private void OnTriggerEnter(Collider other)

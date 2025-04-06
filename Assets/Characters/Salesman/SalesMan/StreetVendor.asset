@@ -34,7 +34,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4985115976033343170, guid: 696acd7763584464293b49207a11e846, type: 3}
     cost: 0
-    position: {x: 601, y: 93}
+    position: {x: 602, y: 93}
     pre:
     - id: 0
       value: 0

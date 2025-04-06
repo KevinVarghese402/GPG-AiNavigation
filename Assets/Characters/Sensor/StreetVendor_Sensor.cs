@@ -17,7 +17,7 @@ public class StreetVendor_Sensor : MonoBehaviour, ISense
     
     public bool NearFire;
     public bool NearCustomer;
-    public float maxDistance; 
+    public float maxDistanceNearCustomer; 
 
     //public Vision vision;
     public NeighbourTracker neighbourTracker;
@@ -32,8 +32,12 @@ public class StreetVendor_Sensor : MonoBehaviour, ISense
         {
             if (neighbour.GetComponent<Customer_TestModel>())
             {
-                Debug.Log("Customer detected!");
-                NearCustomer = true;
+                if (Vector3.Distance(neighbour.transform.position, transform.position) <= maxDistanceNearCustomer )
+                {
+                    Debug.Log("Customer detected!");
+                    NearCustomer = true;
+                }
+              
             }
             if(neighbour.GetComponent<FireTestModel>())
             {
