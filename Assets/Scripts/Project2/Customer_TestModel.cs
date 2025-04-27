@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Customer_TestModel: MonoBehaviour
+namespace KV
 {
-   
+    public class Customer_TestModel : MonoBehaviour
+    {
+
+    }
 }

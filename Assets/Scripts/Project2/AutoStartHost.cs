@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using Unity.Netcode; 
 using UnityEngine;
 
-
-
-public class AutoStartHost : MonoBehaviour
+namespace KV
 {
-    // Start is called before the first frame update
-    void Start()
+    public class AutoStartHost : MonoBehaviour
     {
-        NetworkManager.Singleton.StartHost();
-        
+        // Start is called before the first frame update
+        void Start()
+        {
+            NetworkManager.Singleton.StartHost();
 
+        }
 
-
-        
     }
-
-
 }
+

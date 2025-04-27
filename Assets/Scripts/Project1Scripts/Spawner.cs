@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+namespace KV
 {
-    public GameObject playerPrefab; 
-    public int amount; 
-
-    void Start()
+    public class Spawner : MonoBehaviour
     {
-        InvokeRepeating(nameof(SpawnObject), 0f, 15f); // Repeat spawning every 20 seconds
-    }
+        public GameObject playerPrefab;
+        public int amount;
 
-    private void SpawnObject()
-    {
-        for (int i = 0; i < amount; i++)
+        void Start()
         {
-            Instantiate(playerPrefab, transform.position, transform.rotation);
+            InvokeRepeating(nameof(SpawnObject), 0f, 15f); // Repeat spawning every 20 seconds
+        }
+
+        private void SpawnObject()
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                Instantiate(playerPrefab, transform.position, transform.rotation);
+            }
         }
     }
 }

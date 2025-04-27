@@ -4,66 +4,69 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PathFollow : MonoBehaviour
+namespace KV
 {
-    public NavigationScript navigation;
-    private Vector3[] pathPoints;
-    private int pathindex;
-    public event Action pathFinished; 
-
-
-    //                  \\
-    private Rigidbody rb;
-    public float movementSpeed;
-    public TurnTowards turntowards;
-    
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class PathFollow : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-        turntowards = GetComponent<TurnTowards>();
-    }
+        public NavigationScript navigation;
+        private Vector3[] pathPoints;
+        private int pathindex;
+        public event Action pathFinished;
 
-    // Update is called once per frame
-    void Update()
-    {
-        pathPoints = navigation.pathPoints;
 
-        if (pathPoints.Length > 0)
+        //                  \\
+        private Rigidbody rb;
+        public float movementSpeed;
+        public KV.TurnTowards turntowards;
+
+
+
+        // Start is called before the first frame update
+        void Start()
         {
-            /*
-            if (Vector3.Distance(transform.position, pathPoints[pathPoints.Length - 1]) > 1)
+            rb = GetComponent<Rigidbody>();
+            turntowards = GetComponent<KV.TurnTowards>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            pathPoints = navigation.pathPoints;
+
+            if (pathPoints.Length > 0)
             {
-                if (Vector3.Distance(transform.position, pathPoints[pathindex]) > 1)
+                /*
+                if (Vector3.Distance(transform.position, pathPoints[pathPoints.Length - 1]) > 1)
                 {
-                    Vector3 direction = (pathPoints[pathindex] - transform.position).normalized;
-                    rb.MovePosition(transform.position + (direction * movementSpeed *  Time.deltaTime));
+                    if (Vector3.Distance(transform.position, pathPoints[pathindex]) > 1)
+                    {
+                        Vector3 direction = (pathPoints[pathindex] - transform.position).normalized;
+                        rb.MovePosition(transform.position + (direction * movementSpeed *  Time.deltaTime));
+                    }
+                    else
+                    {
+                        pathindex++;
+                    }
                 }
                 else
                 {
-                    pathindex++;
+                    pathFinished?.Invoke();
                 }
-            }
-            else
-            {
-                pathFinished?.Invoke();
-            }
-            */
-            if (pathPoints.Length > 1)
-            {
-                turntowards.SetTarget(pathPoints[1]);
+                */
+                if (pathPoints.Length > 1)
+                {
+                    turntowards.SetTarget(pathPoints[1]);
 
-            }
+                }
 
 
                 for (int i = 0; i < pathPoints.Length - 1; i++)
-            {
-                Debug.DrawLine(pathPoints[i], pathPoints[i + 1], Color.green);
+                {
+                    Debug.DrawLine(pathPoints[i], pathPoints[i + 1], Color.green);
+                }
             }
+
         }
 
     }
-    
 }
